@@ -41,7 +41,7 @@ public class Anketa {
         $("label[for='hobbies-checkbox-3']").click();
 
         //загрузка файла>
-        $("[id=uploadPicture]").uploadFromClasspath("Screenshot_4.jpg");//нашла эту подсказку у тех, кто уже сдавал. Есть информация почему именно так реализовывается?
+        $("[id=uploadPicture]").uploadFromClasspath("Screenshot_4.png");//нашла эту подсказку у тех, кто уже сдавал. Есть информация почему именно так реализовывается?
         //адрес
         $("[id=currentAddress]").setValue("11223355, Canzas, Morei street, h 45");
 
