@@ -1,15 +1,30 @@
 
 import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
+import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.*;
 
 public class Anketa {
+    @BeforeEach
+    void closeBanner() {
+        // открывает страницу с баннером
+        Configuration.pageLoadStrategy = "eager";
+        open("https://demoqa.com/automation-practice-form");  // Открытие браузера на нужной странице
+        executeJavaScript("$('#fixedban').remove()"); // Скрытие рекламы
+        executeJavaScript("$('footer').remove()");  // Скрытие рекламы
+        // скрываем баннер
+     }
+
+
 
     @Test
     // открыть браузер
     // заполнить поля
     // нажать submit
+
+    // убираем рекламный баннер
 
     void firstTest() {
         //Поиск и заполнение всех полей
@@ -26,7 +41,7 @@ public class Anketa {
         $("[id=userNumber]").setValue("9798888854");// телефон
 
         //календарь
-        $("#dateOfBirthInput").click(); // тут был затык. Почему если делаешь  ("[id=dateOfBirthInput]").click(); то код дальше не шел? а через # корректно отрабатывает
+        $(byId("dateOfBirthInput")).click(); // такая конструкция теперь тоже работает =)
         $(".react-datepicker__month-select").selectOption("November");
         $(".react-datepicker__year-select").selectOption("1992");
         $(".react-datepicker__day--013").click();
@@ -46,8 +61,8 @@ public class Anketa {
         $("[id=currentAddress]").setValue("11223355, Canzas, Morei street, h 45");
 
         //выпадающие списки
-        $("[id=react-select-3-input]").setValue("Haryana").sendKeys(Keys.ENTER); // что выполняет команда .sendKeys(Keys.ENTER)?нажимает подтверждение?
-        $("[id=react-select-4-input]").setValue("Panipat").sendKeys(Keys.ENTER);
+        $("[id=react-select-3-input]").setValue("Haryana").pressEnter(); // что выполняет команда .sendKeys(Keys.ENTER)?нажимает подтверждение?
+        $("[id=react-select-4-input]").setValue("Panipat").pressEnter();
         $("[id=submit]").click(); //нажать иконку Сабмит
 
     }
